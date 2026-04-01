@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cars</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="/static/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-md">
+        <h1 class="mb-4">Available Cars</h1>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            {% for car in cars %}
+            <div class="col">
+                <div class="card h-100 rounded-5 overflow-hidden shadow-sm">
+                    <div id="carousel-{{ loop.index }}" class="carousel slide" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            {% for image in car.images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ image }}" class="d-block w-100" style="height:200px; object-fit:cover;"
+                                    alt="{{ car.brand }} {{ car.model }}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if car.images|length > 1 %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ loop.index }}"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ loop.index }}"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ car.brand }} {{ car.model }}</h5>
+                        <p class="card-text">
+                            Year: {{ car.year }}<br>
+                            Mileage: {{ "{:,}".format(car.mileage) }} km
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <h3 class="price">{{ "{:,}".format(car.price) }} USD</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
