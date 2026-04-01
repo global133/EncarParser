@@ -57,7 +57,7 @@ pip install -r requirements.txt
 ### 3. Запустить сервер
 
 ```bash
-uvicorn app.main:app --reload
+python run.py
 ```
 
 ### 4. Открыть в браузере
