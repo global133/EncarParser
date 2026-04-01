@@ -44,8 +44,8 @@
 ### 1. Клонировать репозиторий
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/global133/EncarParser.git
+cd EncarParser
 ```
 
 ### 2. Установить зависимости 
