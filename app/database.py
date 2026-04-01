@@ -1,7 +1,9 @@
 import json
+import os
 from app.config import DATA_FILE
 
 def save_cars(cars):
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
     try:
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump([car.model_dump() for car in cars], f, ensure_ascii=False, indent=2)
